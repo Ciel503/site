@@ -1,0 +1,9 @@
+{
+  "dependencies": {
+    "react": "^19.0.0"
+  },
+  "devDependencies": {
+    "@prisma/client": "^6.4.1",
+    "prisma": "^6.4.1"
+  }
+}
