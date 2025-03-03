@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { processImageUrl } from '../utils/imageUtils';
 
 const Home = () => {
   const [dados, setDados] = useState([]);
@@ -34,12 +35,20 @@ const Home = () => {
         <div className="grid-container">
           {dados.map((item: any) => (
             <div key={item._id} className="card">
-              
-              <img className="card-image" src={item.url} alt="perfume imagem" />
-             
-            
+              <img 
+                className="card-image" 
+                src={processImageUrl(item.url)} 
+                alt="imagem" 
+                onError={(e) => {
+                  console.error('Erro ao carregar imagem:', {
+                    originalUrl: item.url,
+                    processedUrl: processImageUrl(item.url),
+                    error: e
+                  });
+                  e.currentTarget.src = '/placeholder.jpg';
+                }}
+              />
               <p className="card-description">{item.descricao}</p>
-              
             </div>
           ))}
         </div>
